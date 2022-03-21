@@ -15,7 +15,7 @@ public class Questions {
     private String opt2;
     private String opt3;
 
-    public Questions(){
+    public Questions() {
     }
 
     public Questions(String quest, String opt1, String opt2, String opt3) {
@@ -29,40 +29,41 @@ public class Questions {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getQuest() {
         return quest;
+    }
+
+    public void setQuest(String quest) {
+        this.quest = quest;
     }
 
     public String getOpt1() {
         return opt1;
     }
 
-    public String getOpt2() {
-        return opt2;
-    }
-
-    public String getOpt3() {
-        return opt3;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setQuest(String question) {
-        this.quest = quest;
-    }
-
     public void setOpt1(String opt1) {
         this.opt1 = opt1;
+    }
+
+    public String getOpt2() {
+        return opt2;
     }
 
     public void setOpt2(String opt2) {
         this.opt2 = opt2;
     }
 
+    public String getOpt3() {
+        return opt3;
+    }
+
     public void setOpt3(String opt3) {
         this.opt3 = opt3;
     }
 }
+
 
