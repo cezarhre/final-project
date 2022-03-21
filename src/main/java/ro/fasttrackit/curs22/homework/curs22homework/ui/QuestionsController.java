@@ -1,24 +1,75 @@
 package ro.fasttrackit.curs22.homework.curs22homework.ui;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import ro.fasttrackit.curs22.homework.curs22homework.model.Questions;
 import ro.fasttrackit.curs22.homework.curs22homework.service.QuestionsService;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("questions")
 public class QuestionsController {
 
-    private QuestionsService service;
+    private final QuestionsService service;
 
     public QuestionsController(QuestionsService service) {
         this.service = service;
     }
 
-    @GetMapping
-    String getTablesPage(Model model){
-        model.addAttribute("questions", service.getAll());
-        return "questions";
+    @GetMapping("questions")
+    String viewHomePage(Model model){
+        return findPaginated(1, model);
     }
+
+    @GetMapping("/showNewQuestionForm")
+    public String showNewQuestionForm(Model model) {
+        // create model attribute to bind form data
+        Questions questions = new Questions();
+        model.addAttribute("questions", questions);
+        return "newQuestion";
+    }
+
+    @PostMapping("/saveQuestion")
+    public String saveQuestion(@ModelAttribute("questions") Questions questions) {
+        // save question to database
+        service.saveQuestion(questions);
+        return "redirect:/";
+    }
+
+    @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable ( value = "id") int id, Model model) {
+
+        // get question from the service
+        Questions questions = service.getQuestionById(id);
+
+        // set question as a model attribute to pre-populate the form
+        model.addAttribute("questions", questions);
+        return "updateQuestion";
+    }
+
+    @GetMapping("/deleteQuestion/{id}")
+    public String deleteEmployee(@PathVariable (value = "id") int id) {
+
+        // call delete question method
+        this.service.deleteQuestionById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,Model model) {
+        int pageSize = 4;
+
+        Page<Questions> page = service.findPaginated(pageNo, pageSize);
+        List<Questions> questionsList = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("questionsList", questionsList);
+        return "index";
+    }
+
 }

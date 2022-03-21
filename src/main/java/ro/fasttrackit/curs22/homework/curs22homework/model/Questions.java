@@ -10,17 +10,16 @@ public class Questions {
     @Id
     @GeneratedValue
     private int id;
-    private String question;
+    private String quest;
     private String opt1;
     private String opt2;
     private String opt3;
 
     public Questions(){
-
     }
 
-    public Questions(String question, String opt1, String opt2, String opt3) {
-        this.question = question;
+    public Questions(String quest, String opt1, String opt2, String opt3) {
+        this.quest = quest;
         this.opt1 = opt1;
         this.opt2 = opt2;
         this.opt3 = opt3;
@@ -30,8 +29,8 @@ public class Questions {
         return id;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getQuest() {
+        return quest;
     }
 
     public String getOpt1() {
@@ -45,4 +44,25 @@ public class Questions {
     public String getOpt3() {
         return opt3;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setQuest(String question) {
+        this.quest = quest;
+    }
+
+    public void setOpt1(String opt1) {
+        this.opt1 = opt1;
+    }
+
+    public void setOpt2(String opt2) {
+        this.opt2 = opt2;
+    }
+
+    public void setOpt3(String opt3) {
+        this.opt3 = opt3;
+    }
 }
+
