@@ -35,7 +35,7 @@ public class QuestionsController {
     public String saveQuestion(@ModelAttribute("questions") Questions questions) {
         // save question to database
         service.saveQuestion(questions);
-        return "redirect:/";
+        return "redirect:/questions";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -54,7 +54,7 @@ public class QuestionsController {
 
         // call delete question method
         this.service.deleteQuestionById(id);
-        return "redirect:/";
+        return "redirect:/questions";
     }
 
     @GetMapping("/page/{pageNo}")
@@ -71,5 +71,7 @@ public class QuestionsController {
         model.addAttribute("questionsList", questionsList);
         return "index";
     }
+
+
 
 }
