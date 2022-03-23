@@ -23,9 +23,15 @@ public class QuestionsController {
         return findPaginated(1, model);
     }
 
+    @GetMapping("/final/{id}")
+    String getQuestionPage(@PathVariable(value = "id") int id, Model model){
+        Questions questions = service.getQuestionById(id);
+        model.addAttribute("questions", questions);
+        return "questions";
+    }
+
     @GetMapping("/showNewQuestionForm")
     public String showNewQuestionForm(Model model) {
-        // create model attribute to bind form data
         Questions questions = new Questions();
         model.addAttribute("questions", questions);
         return "newQuestion";
@@ -33,26 +39,19 @@ public class QuestionsController {
 
     @PostMapping("/saveQuestion")
     public String saveQuestion(@ModelAttribute("questions") Questions questions) {
-        // save question to database
         service.saveQuestion(questions);
         return "redirect:/questions";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable ( value = "id") int id, Model model) {
-
-        // get question from the service
+    public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
         Questions questions = service.getQuestionById(id);
-
-        // set question as a model attribute to pre-populate the form
         model.addAttribute("questions", questions);
         return "updateQuestion";
     }
 
     @GetMapping("/deleteQuestion/{id}")
-    public String deleteEmployee(@PathVariable (value = "id") int id) {
-
-        // call delete question method
+    public String deleteEmployee(@PathVariable(value = "id") int id) {
         this.service.deleteQuestionById(id);
         return "redirect:/questions";
     }
@@ -60,18 +59,10 @@ public class QuestionsController {
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,Model model) {
         int pageSize = 4;
-
         Page<Questions> page = service.findPaginated(pageNo, pageSize);
         List<Questions> questionsList = page.getContent();
-
         model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-
         model.addAttribute("questionsList", questionsList);
-        return "index";
+        return "list";
     }
-
-
-
 }

@@ -14,15 +14,19 @@ public class Questions {
     private String opt1;
     private String opt2;
     private String opt3;
+    private String choose;
+    private String answer;
 
     public Questions() {
     }
 
-    public Questions(String quest, String opt1, String opt2, String opt3) {
+    public Questions(String quest, String opt1, String opt2, String opt3, String choose, String answer) {
         this.quest = quest;
         this.opt1 = opt1;
         this.opt2 = opt2;
         this.opt3 = opt3;
+        this.choose = choose;
+        this.answer = answer;
     }
 
     public int getId() {
@@ -63,6 +67,22 @@ public class Questions {
 
     public void setOpt3(String opt3) {
         this.opt3 = opt3;
+    }
+
+    public String getChoose() {
+        return choose;
+    }
+
+    public void setChoose(String choose) {
+        this.choose = choose;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }
 

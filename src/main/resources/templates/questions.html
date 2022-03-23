@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Transaction Application</title>
 
@@ -7,37 +7,36 @@
 </head>
 
 <div class="container py-5 px-4">
-    <h1 class="bg-danger text-light">CHESTIONAR AUTO CATEGORIA B</h1>
+    <h1 class="bg-secondary text-light">CHESTIONAR AUTO CATEGORIA B</h1>
 
     <form action="submit" method="POST" object=${questions} style='padding: 5px; font-size: 1.5rem;'>
 
-        <div class="ques-box bg-dark text-light" data-th-each="questions:${questions}">
+        <div class="ques-box bg-info text-light" data-th-each="questions:${questions}">
 
             <input type="hidden" name="questions.id" value="${questions.id}" />
             <p class="title" data-th-text="${questions.id +'. '+questions.quest}" ></p>
 
             <div class="option">
-                <input type="radio" name="questions.opt1" value="questions.opt1" data-th-text="${questions.opt1}"/>
+                <input type="radio" name="questions.choose" value="1" data-th-text="${questions.opt1}"/>
             </div>
 
             <div class="option">
-                <input type="radio" name="questions.opt2" value="questions.opt2" data-th-text="${questions.opt2}"/>
+                <input type="radio" name="questions.choose" value="2" data-th-text="${questions.opt2}"/>
             </div>
 
             <div class="option">
-                <input type="radio" name="questions.opt3" value="questions.opt3" data-th-text="${questions.opt3}"/>
+                <input type="radio" name="questions.choose" value="3" data-th-text="${questions.opt3}"/>
             </div>
+
+            <input type="hidden" th:name="questions.answer" th:value="${questions.answer}" />
+
             <br>
+
          </div>
-        <ul class="pagination justify-content-center" style="margin:10px 0">
-            <li class="page-item active"><a class="page-link" href="Page1.html">Inapoi</a></li>
-            <li class="page-item"><a class="page-link" href="?Page=1">1</a></li>
-            <li class="page-item"><a class="page-link" href="Page2.html">2</a></li>
-            <li class="page-item"><a class="page-link" href="Page3.html">3</a></li>
-            <li class="page-item"><a class="page-link" href="Page4.html">4</a></li>
-            <li class="page-item"><a class="page-link" href="Page4.html">Inainte</a></li>
-        </ul>
+
         <button type="submit" class="btn btn-danger d-block mx-auto mt-4">Alege raspunsul corect</button>
+
+        <a th:href = "@{/questions}"> Back to Questions List</a>
     </form>
 </div>
 </html>
