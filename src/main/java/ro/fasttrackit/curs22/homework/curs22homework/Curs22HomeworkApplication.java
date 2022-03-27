@@ -1,13 +1,7 @@
 package ro.fasttrackit.curs22.homework.curs22homework;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import ro.fasttrackit.curs22.homework.curs22homework.model.Questions;
-import ro.fasttrackit.curs22.homework.curs22homework.repository.QuestionsRepository;
-
-import java.util.List;
 
 @SpringBootApplication
 public class Curs22HomeworkApplication {

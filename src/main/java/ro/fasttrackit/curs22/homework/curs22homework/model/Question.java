@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Questions {
+public class Question {
 
     @Id
     @GeneratedValue
@@ -14,15 +14,17 @@ public class Questions {
     private String opt1;
     private String opt2;
     private String opt3;
+    private String correct;
 
-    public Questions() {
+    public Question() {
     }
 
-    public Questions(String quest, String opt1, String opt2, String opt3) {
+    public Question(String quest, String opt1, String opt2, String opt3, String correct) {
         this.quest = quest;
         this.opt1 = opt1;
         this.opt2 = opt2;
         this.opt3 = opt3;
+        this.correct = correct;
     }
 
     public int getId() {
@@ -65,6 +67,13 @@ public class Questions {
         this.opt3 = opt3;
     }
 
+    public String getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(String correct) {
+        this.correct = correct;
+    }
 }
 
 

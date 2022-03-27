@@ -4,33 +4,31 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ro.fasttrackit.curs22.homework.curs22homework.model.Questions;
-import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionsImpl;
-import ro.fasttrackit.curs22.homework.curs22homework.repository.QuestionsRepository;
-
+import ro.fasttrackit.curs22.homework.curs22homework.model.Question;
+import ro.fasttrackit.curs22.homework.curs22homework.repository.QuestionRepository;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class QuestionsService implements QuestionsImpl {
+public class QuestionService {
 
-    private final QuestionsRepository repository;
+    private final QuestionRepository repository;
 
-    public QuestionsService(QuestionsRepository repository) {
+    public QuestionService(QuestionRepository repository) {
         this.repository = repository;
     }
 
-    public List<Questions> getAll(){
+    public List<Question> getAll(){
         return repository.findAll();
     }
 
-    public void saveQuestion(Questions questions) {
+    public void saveQuestion(Question questions) {
         this.repository.save(questions);
     }
 
-    public Questions getQuestionById(int id) {
-        Optional<Questions> optional = repository.findById(id);
-        Questions questions = null;
+    public Question getQuestionById(int id) {
+        Optional<Question> optional = repository.findById(id);
+        Question questions;
         if (optional.isPresent()) {
             questions = optional.get();
         } else {
@@ -43,7 +41,7 @@ public class QuestionsService implements QuestionsImpl {
         this.repository.deleteById(id);
     }
 
-    public Page<Questions> findPaginated ( int pageNo, int pageSize){
+    public Page<Question> findPaginated (int pageNo, int pageSize){
             Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
             return this.repository.findAll(pageable);
     }
