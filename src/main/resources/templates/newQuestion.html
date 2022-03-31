@@ -11,8 +11,7 @@
     <hr>
     <h2>Save Question</h2>
 
-    <form action="#" th:action="@{/saveQuestion}" th:object="${questions}"
-          method="POST">
+    <form action="#" th:action="@{/saveQuestion}" th:object="${questions}" method="post">
 
         <input type="text" th:field="*{quest}" placeholder="Question" class="form-control mb-4 col-15"/>
         <label for="valid1"></label>

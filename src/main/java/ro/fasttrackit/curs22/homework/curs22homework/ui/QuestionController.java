@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Question;
+import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionForm;
 import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionFormData;
 import ro.fasttrackit.curs22.homework.curs22homework.service.QuestionService;
 
@@ -19,8 +20,6 @@ public class QuestionController {
         this.service = service;
     }
 
-
-
     @GetMapping("questions")
     String viewHomePage(Model model){
         return findPaginated(1, model);
@@ -32,23 +31,22 @@ public class QuestionController {
         return "questions";
     }
 
-
     @GetMapping("/showNewQuestionForm")
     public String showNewQuestionForm(Model model) {
-        QuestionFormData question = new QuestionFormData();
+        QuestionForm question = new QuestionForm();
         model.addAttribute("questions", question);
         return "newQuestion";
     }
 
     @PostMapping("/saveQuestion")
-    public String saveQuestion(@ModelAttribute("questions") QuestionFormData question) {
+    public String saveQuestion(@ModelAttribute("questions") QuestionForm question) {
         service.saveQuestion(question);
         return "redirect:/questions";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
-        QuestionFormData question = service.getQuestionById(id);
+        Question question = service.getQuestionById(id);
         model.addAttribute("questions", question);
         return "updateQuestion";
     }

@@ -29,14 +29,6 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public String getChoose() {
-        return choose;
-    }
-
-    public void setChoose(String choose) {
-        this.choose = choose;
-    }
-
     public int getId() {
         return id;
     }
@@ -75,6 +67,15 @@ public class Question {
 
     public void setOpt3(String opt3) {
         this.opt3 = opt3;
+    }
+
+
+    public String getChoose() {
+        return choose;
+    }
+
+    public void setChoose(String choose) {
+        this.choose = choose;
     }
 
     public String getCorrectAnswer() {
