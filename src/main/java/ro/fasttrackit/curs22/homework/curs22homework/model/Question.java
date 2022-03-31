@@ -14,19 +14,28 @@ public class Question {
     private String opt1;
     private String opt2;
     private String opt3;
+    private String choose;
     private String correctAnswer;
 
     public Question() {
     }
 
-    public Question(String quest, String opt1, String opt2, String opt3, String correctAnswer) {
+    public Question(String quest, String opt1, String opt2, String opt3, String choose, String correctAnswer) {
         this.quest = quest;
         this.opt1 = opt1;
         this.opt2 = opt2;
         this.opt3 = opt3;
+        this.choose = choose;
         this.correctAnswer = correctAnswer;
     }
 
+    public String getChoose() {
+        return choose;
+    }
+
+    public void setChoose(String choose) {
+        this.choose = choose;
+    }
 
     public int getId() {
         return id;

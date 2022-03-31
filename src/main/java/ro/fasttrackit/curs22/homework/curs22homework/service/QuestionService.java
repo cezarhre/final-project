@@ -5,8 +5,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Question;
+import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionFormData;
 import ro.fasttrackit.curs22.homework.curs22homework.repository.QuestionRepository;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -26,7 +28,7 @@ public class QuestionService {
         this.repository.save(questions);
     }
 
-    public Question getQuestionById(int id) {
+    public QuestionFormData getQuestionById(int id) {
         Optional<Question> optional = repository.findById(id);
         Question questions;
         if (optional.isPresent()) {
@@ -34,7 +36,7 @@ public class QuestionService {
         } else {
             throw new RuntimeException(" Question not found for id :: " + id);
         }
-        return questions;
+        return (QuestionFormData) questions;
     }
 
     public void deleteQuestionById(int id) {

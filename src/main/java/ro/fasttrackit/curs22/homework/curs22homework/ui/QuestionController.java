@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Question;
+import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionFormData;
 import ro.fasttrackit.curs22.homework.curs22homework.service.QuestionService;
 
 import java.util.List;
@@ -18,40 +19,42 @@ public class QuestionController {
         this.service = service;
     }
 
+
+
     @GetMapping("questions")
     String viewHomePage(Model model){
         return findPaginated(1, model);
     }
 
-    @GetMapping("/final/{id}")
-    String getQuestionPage(@PathVariable(value = "id") int id, Model model){
-        Question questions = service.getQuestionById(id);
-        model.addAttribute("questions", questions);
+    @GetMapping("/final")
+    String getQuestionPage(Model model){
+        model.addAttribute("questions", service.getAll());
         return "questions";
     }
 
+
     @GetMapping("/showNewQuestionForm")
     public String showNewQuestionForm(Model model) {
-        Question questions = new Question();
-        model.addAttribute("questions", questions);
+        QuestionFormData question = new QuestionFormData();
+        model.addAttribute("questions", question);
         return "newQuestion";
     }
 
     @PostMapping("/saveQuestion")
-    public String saveQuestion(@ModelAttribute("questions") Question questions) {
-        service.saveQuestion(questions);
+    public String saveQuestion(@ModelAttribute("questions") QuestionFormData question) {
+        service.saveQuestion(question);
         return "redirect:/questions";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
-        Question questions = service.getQuestionById(id);
-        model.addAttribute("questions", questions);
+        QuestionFormData question = service.getQuestionById(id);
+        model.addAttribute("questions", question);
         return "updateQuestion";
     }
 
     @GetMapping("/deleteQuestion/{id}")
-    public String deleteEmployee(@PathVariable(value = "id") int id) {
+    public String deleteQuestion(@PathVariable(value = "id") int id) {
         this.service.deleteQuestionById(id);
         return "redirect:/questions";
     }
