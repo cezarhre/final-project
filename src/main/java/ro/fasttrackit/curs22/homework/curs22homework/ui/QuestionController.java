@@ -4,9 +4,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Question;
 import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionForm;
 import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionFormData;
+import ro.fasttrackit.curs22.homework.curs22homework.model.Result;
 import ro.fasttrackit.curs22.homework.curs22homework.service.QuestionService;
 
 import java.util.List;
@@ -21,14 +23,26 @@ public class QuestionController {
     }
 
     @GetMapping("questions")
-    String viewHomePage(Model model){
+    public String viewHomePage(Model model){
         return findPaginated(1, model);
     }
 
     @GetMapping("/final")
-    String getQuestionPage(Model model){
+    public String getQuestionPage(Model model){
         model.addAttribute("questions", service.getAll());
         return "questions";
+    }
+
+    @PostMapping("/submit")
+    public String submit(@ModelAttribute QuestionFormData questionFormData, RedirectAttributes redirectAttributes){
+        Result result = service.getResult(questionFormData);
+        redirectAttributes.addFlashAttribute("result", result);
+        return "redirect:/result";
+    }
+
+    @GetMapping(value = "/result")
+    String result(){
+        return "result";
     }
 
     @GetMapping("/showNewQuestionForm")

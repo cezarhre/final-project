@@ -1,9 +1,12 @@
 package ro.fasttrackit.curs22.homework.curs22homework.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class QuestionForm extends Question{
+
     private String quest;
     private String opt1;
     private String opt2;
@@ -15,42 +18,34 @@ public class QuestionForm extends Question{
     public QuestionForm(){
     }
 
-    @Override
     public String getQuest() {
         return quest;
     }
 
-    @Override
     public void setQuest(String quest) {
         this.quest = quest;
     }
 
-    @Override
     public String getOpt1() {
         return opt1;
     }
 
-    @Override
     public void setOpt1(String opt1) {
         this.opt1 = opt1;
     }
 
-    @Override
     public String getOpt2() {
         return opt2;
     }
 
-    @Override
     public void setOpt2(String opt2) {
         this.opt2 = opt2;
     }
 
-    @Override
     public String getOpt3() {
         return opt3;
     }
 
-    @Override
     public void setOpt3(String opt3) {
         this.opt3 = opt3;
     }

@@ -7,26 +7,41 @@ import org.springframework.stereotype.Service;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Question;
 import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionForm;
 import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionFormData;
+import ro.fasttrackit.curs22.homework.curs22homework.model.Result;
 import ro.fasttrackit.curs22.homework.curs22homework.repository.QuestionRepository;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+
+import java.util.*;
 
 @Service
 public class QuestionService {
 
     private final QuestionRepository repository;
 
-    public QuestionService(QuestionRepository repository) {
+    private final Result result;
+
+    public QuestionService(QuestionRepository repository, Result result) {
         this.repository = repository;
+        this.result = result;
     }
 
     public List<Question> getAll(){
         return repository.findAll();
     }
 
-    public void saveQuestion(Question questions) {
+    public void saveQuestion(QuestionForm questions) {
         this.repository.save(questions);
+    }
+
+    public Result getResult(QuestionFormData questionFormData) {
+        result.setTotalCorrect(0);
+        result.setTotalWrong(0);
+        for(Question q: questionFormData.getQuestions()) {
+            if(Objects.equals(q.getCorrectAnswer(), q.getChoose()))
+                result.setTotalCorrect(result.getTotalCorrect() + 1);
+            else
+                result.setTotalWrong(result.getTotalWrong() + 1);
+        }
+        return result;
     }
 
     public Question getQuestionById(int id) {

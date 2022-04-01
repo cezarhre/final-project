@@ -1,17 +1,34 @@
 package ro.fasttrackit.curs22.homework.curs22homework.model;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Component
+@Entity
 public class Result {
-    private int totalCorrect;
-    private int totalWrong;
+
+    @Id
+    @GeneratedValue
+    private int id;
+    private int totalCorrect=0;
+    private int totalWrong=0;
 
     public Result(){
-        super();
     }
 
-    public Result(int totalCorrect, int totalWrong) {
-        super();
+    public Result(int totalCorrect, int totalWrong){
         this.totalCorrect = totalCorrect;
         this.totalWrong = totalWrong;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getTotalCorrect() {

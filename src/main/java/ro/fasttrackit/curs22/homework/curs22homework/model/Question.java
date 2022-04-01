@@ -69,7 +69,6 @@ public class Question {
         this.opt3 = opt3;
     }
 
-
     public String getChoose() {
         return choose;
     }
