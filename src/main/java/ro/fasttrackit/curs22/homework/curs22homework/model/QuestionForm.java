@@ -11,9 +11,6 @@ public class QuestionForm extends Question{
     private String opt1;
     private String opt2;
     private String opt3;
-    private boolean valid1;
-    private boolean valid2;
-    private boolean valid3;
 
     public QuestionForm(){
     }
@@ -50,27 +47,4 @@ public class QuestionForm extends Question{
         this.opt3 = opt3;
     }
 
-    public boolean isValid1() {
-        return valid1;
-    }
-
-    public void setValid1(boolean valid1) {
-        this.valid1 = valid1;
-    }
-
-    public boolean isValid2() {
-        return valid2;
-    }
-
-    public void setValid2(boolean valid2) {
-        this.valid2 = valid2;
-    }
-
-    public boolean isValid3() {
-        return valid3;
-    }
-
-    public void setValid3(boolean valid3) {
-        this.valid3 = valid3;
-    }
 }

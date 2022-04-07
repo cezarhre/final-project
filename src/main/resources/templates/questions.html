@@ -11,24 +11,21 @@
     <h1 class="bg-secondary text-light">SELECTEAZA RASPUNSUL CORECT</h1>
 
     <form action="submit"  method="POST" data-th-object=${questions}>
-        <div class="ques-box bg-info text-light" data-th-each="questions, i:${questions}">
+        <div class="ques-box bg-dark text-light" data-th-each="questions, i:${questions}">
 
             <input type="hidden" data-th-name="|questions[${i.index}].quest|" data-th-value="${questions.id}" />
             <p class="title" data-th-text="${questions.id +'. '+questions.quest}" ></p>
 
             <div class="option">
-            <input type="radio" data-th-name="|questions[${i.index}].choose|" data-th-value="valid1" data-th-text="${questions.opt1}"/>
-                <span id="ans1"></span>
+            <input type="radio" data-th-name="|questions[${i.index}].choose|" data-th-value="1" data-th-text="${questions.opt1}"/>
             </div>
 
             <div class="option">
-            <input type="radio" data-th-name="|questions[${i.index}].choose|" data-th-value="valid2" data-th-text="${questions.opt2}"/>
-                <span id="ans2"></span>
+            <input type="radio" data-th-name="|questions[${i.index}].choose|" data-th-value="2" data-th-text="${questions.opt2}"/>
             </div>
 
             <div class="option">
-            <input type="radio" data-th-name="|questions[${i.index}].choose|" data-th-value="valid3" data-th-text="${questions.opt3}"/>
-                <span id="ans3"></span>
+            <input type="radio" data-th-name="|questions[${i.index}].choose|" data-th-value="3" data-th-text="${questions.opt3}"/>
             </div>
             <br>
             <input type="hidden" data-th-name="|questions[${i.index}].correctAnswer|" data-th-value="${questions.correctAnswer}" />
@@ -36,7 +33,7 @@
 
         <button type="submit" class="btn btn-danger d-block mx-auto mt-4">Finalizeaza</button>
 
-        <a th:href = "@{/questions}"> Back to Questions List</a>
+        <a data-th-href = "@{/questions}"> Back to Questions List</a>
 
     </form>
 </div>

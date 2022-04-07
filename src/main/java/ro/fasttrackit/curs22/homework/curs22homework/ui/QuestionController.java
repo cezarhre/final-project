@@ -40,8 +40,8 @@ public class QuestionController {
         return "redirect:/result";
     }
 
-    @GetMapping(value = "/result")
-    String result(){
+    @GetMapping("result")
+    public String result(){
         return "result";
     }
 

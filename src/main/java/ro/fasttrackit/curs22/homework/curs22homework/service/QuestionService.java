@@ -1,5 +1,7 @@
 package ro.fasttrackit.curs22.homework.curs22homework.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +11,7 @@ import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionForm;
 import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionFormData;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Result;
 import ro.fasttrackit.curs22.homework.curs22homework.repository.QuestionRepository;
+import ro.fasttrackit.curs22.homework.curs22homework.ui.QuestionController;
 
 import java.util.*;
 
