@@ -10,7 +10,7 @@
 <div class="container py-5 px-4">
     <h1 class="bg-secondary text-light">SELECTEAZA RASPUNSUL CORECT</h1>
 
-    <form action="submit"  method="POST" data-th-object=${questions}>
+    <form action="submit" method="POST" data-th-object=${questions}>
         <div class="ques-box bg-dark text-light" data-th-each="questions, i:${questions}">
 
             <input type="hidden" data-th-name="|questions[${i.index}].quest|" data-th-value="${questions.id}" />

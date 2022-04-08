@@ -6,11 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Question;
-import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionForm;
 import ro.fasttrackit.curs22.homework.curs22homework.model.QuestionFormData;
 import ro.fasttrackit.curs22.homework.curs22homework.model.Result;
 import ro.fasttrackit.curs22.homework.curs22homework.service.QuestionService;
-
 import java.util.List;
 
 @Controller
@@ -47,13 +45,13 @@ public class QuestionController {
 
     @GetMapping("/showNewQuestionForm")
     public String showNewQuestionForm(Model model) {
-        QuestionForm question = new QuestionForm();
+        Question question = new Question();
         model.addAttribute("questions", question);
         return "newQuestion";
     }
 
     @PostMapping("/saveQuestion")
-    public String saveQuestion(@ModelAttribute("questions") QuestionForm question) {
+    public String saveQuestion(@ModelAttribute("questions") Question question) {
         service.saveQuestion(question);
         return "redirect:/questions";
     }
